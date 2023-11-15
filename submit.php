@@ -21,4 +21,3 @@
         $message .= "Hospitalization or Treatment Received: {$_POST['hospitalization']}\n";
         $message .= "Message: {$_POST['Message']}\n";
         
-        $headers = "From: {$_POST['name']} <{$_POST['email']}
