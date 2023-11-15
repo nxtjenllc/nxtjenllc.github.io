@@ -1,34 +1,52 @@
 <?php
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+// Include PHPMailer Autoload
+require 'phpmailer/src/Exception.php';
+require 'phpmailer/src/PHPMailer.php';
+require 'phpmailer/src/SMTP.php';
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Include your mail function here to send emails to the selected lawyer and CC to yourself
     $selectedLawyer = $_POST['lawyer_reaching'];
-    $yourEmail = 'nxtjenanswering@gmail.com';
+    $yourEmail = 'your_email@gmail.com'; // Replace with your Gmail email address
+    $yourPassword = 'your_password';     // Replace with your Gmail password
 
     $to = $selectedLawyer;
     $cc = $yourEmail;
     $subject = "New Legal Consultation Form Submission";
     
-    // Include the form data in the email body
     $message = "Name: {$_POST['name']}\n";
-    $message .= "Phone Number: {$_POST['phone']}\n";
-    $message .= "Email: {$_POST['email']}\n";
-    $message .= "Lawyer Reaching: {$_POST['lawyer_reaching']}\n";
-    $message .= "How did you hear about us?: {$_POST['hear_about_us']}\n";
-    $message .= "Legal Plan Name&ID: {$_POST['legal_plan_name_&_id']}\n";
-    $message .= "Type of Accident: {$_POST['accident_type']}\n";
-    $message .= "Date of Accident: {$_POST['accident_date']}\n";
-    $message .= "Location of Accident: {$_POST['accident_location']}\n";
-    $message .= "Hospitalization or Treatment Received: {$_POST['hospitalization']}\n";
-    $message .= "Message: {$_POST['Message']}\n";
-    
-    $headers = "From: {$_POST['name']} <{$_POST['email']}>\r\n";
-    $headers .= "CC: $cc\r\n";
+    // Include other form data in the email body
 
-    // Use the mail() function to send the email
-    mail($to, $subject, $message, $headers);
+    $mail = new PHPMailer(true);
 
-    // Redirect to a thank-you page or display a thank-you message
-    header("Location: thank-you.html");
-    exit();
+    try {
+        //Server settings
+        $mail->SMTPDebug = 0;                      // Enable verbose debug output (set to 2 for detailed debug)
+        $mail->isSMTP();
+        $mail->Host = 'smtp.gmail.com';
+        $mail->SMTPAuth = true;
+        $mail->Username = $yourEmail;
+        $mail->Password = $yourPassword;
+        $mail->SMTPSecure = 'tls'; // Use 'tls' or 'ssl'
+        $mail->Port = 587;         // Set the appropriate port: 587 for TLS, 465 for SSL
+
+        //Recipients
+        $mail->setFrom($yourEmail);
+        $mail->addAddress($to);
+        $mail->addCC($cc);
+
+        // Content
+        $mail->isHTML(false); // Set to true if you're sending HTML content
+        $mail->Subject = $subject;
+        $mail->Body = $message;
+
+        $mail->send();
+        header("Location: thank-you.html");
+        exit();
+    } catch (Exception $e) {
+        echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+    }
 }
 ?>
