@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Legal Consultation Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+    <form action="submit.php" method="post">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="phone">Phone Number:</label>
+        <input type="tel" id="phone" name="phone" required>
+
+        <label for="email">E-mail:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="lawyer_reaching">Lawyer Reaching:</label>
+        <select id="lawyer_reaching" name="lawyer_reaching" onchange="updateMessage()" required>
+            <option value="jlgonzalez3045@gmail.com">Jorge Abreu</option>
+            <option value="lawyer2@example.com">Lawyer 2</option>
+            <option value="lawyer3@example.com">Lawyer 3</option>
+        </select>
+
+        <label for="hear_about_us">How did you hear about us?</label>
+        <input type="text" id="hear_about_us" name="hear_about_us">
+
+        <label for="legalPlanName&Id">Legal Plan Name&ID:</label>
+        <input type="text" id="legalPlanName&Id" name="legal_plan_name_&_id" required>
+
+        <label for="accident_type">Type of Accident:</label>
+        <input type="text" id="accident_type" name="accident_type">
+
+        <label for="accident_date">Date of Accident:</label>
+        <input type="date" id="accident_date" name="accident_date">
+
+        <label for="accident_location">Location of Accident:</label>
+        <input type="text" id="accident_location" name="accident_location">
+
+        <label for="hospitalization">Hospitalization or Treatment Received:</label>
+        <textarea id="hospitalization" name="hospitalization" rows="4"></textarea>
+        
+        <label for="Message">Message:</label>
+        <textarea id="Message" name="Message" rows="4" readonly></textarea>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <script>
+        function updateMessage() {
+            var lawyerSelect = document.getElementById("lawyer_reaching");
+            var selectedLawyer = lawyerSelect.options[lawyerSelect.selectedIndex];
+            var lawyerName = selectedLawyer.text;
+            var lawyerEmail = selectedLawyer.value;
+
+            var messageTextArea = document.getElementById("Message");
+            messageTextArea.value = "Selected Lawyer:\nName: " + lawyerName + "\nEmail: " + lawyerEmail;
+        }
+    </script>
+
+</body>
+</html>
