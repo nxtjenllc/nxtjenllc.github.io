@@ -20,4 +20,3 @@
         $message .= "Location of Accident: {$_POST['accident_location']}\n";
         $message .= "Hospitalization or Treatment Received: {$_POST['hospitalization']}\n";
         $message .= "Message: {$_POST['Message']}\n";
-        
