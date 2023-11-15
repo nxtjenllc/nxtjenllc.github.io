@@ -9,8 +9,8 @@ require 'phpmailer/src/SMTP.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $selectedLawyer = $_POST['lawyer_reaching'];
-    $yourEmail = 'your_email@gmail.com'; // Replace with your Gmail email address
-    $yourPassword = 'your_password';     // Replace with your Gmail password
+    $yourEmail = 'nxtjenanswering@gmail.com'; // Replace with your Gmail email address
+    $yourPassword = 'zcyb qznh izpa gupu';     // Replace with your Gmail password
 
     $to = $selectedLawyer;
     $cc = $yourEmail;
