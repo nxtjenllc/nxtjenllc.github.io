@@ -10,7 +10,7 @@ require 'phpmailer/src/SMTP.php';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $selectedLawyer = $_POST['lawyer_reaching'];
     $yourEmail = 'nxtjenanswering@gmail.com'; // Replace with your Gmail email address
-    $yourPassword = 'zcyb qznh izpa gupu';     // Replace with your Gmail password
+    $yourPassword = 'April16$1987!';     // Replace with your Gmail password
 
     $to = $selectedLawyer;
     $cc = $yourEmail;
@@ -27,10 +27,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $mail->isSMTP();
         $mail->Host = 'smtp.gmail.com';
         $mail->SMTPAuth = true;
-        $mail->Username = $yourEmail;
-        $mail->Password = $yourPassword;
+        $mail->Username = nxtjenanswering@gmail.com;
+        $mail->Password = April16$1987!;
         $mail->SMTPSecure = 'tls'; // Use 'tls' or 'ssl'
-        $mail->Port = 587;         // Set the appropriate port: 587 for TLS, 465 for SSL
+        $mail->Port = 465;         // Set the appropriate port: 587 for TLS, 465 for SSL
 
         //Recipients
         $mail->setFrom($yourEmail);
